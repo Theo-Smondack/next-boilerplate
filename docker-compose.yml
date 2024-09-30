@@ -1,0 +1,30 @@
+services:
+    next:
+        build:
+            context: .
+            dockerfile: ./docker/next/Dockerfile
+        env_file:
+            - .env
+        restart: unless-stopped
+        container_name: '${NEXT_CONTAINER_NAME:?err}'
+        stdin_open: true
+        tty: true
+        ports:
+            - '3000:3000'
+        volumes:
+            - .:/home/node/app
+        depends_on:
+            - postgres
+
+    postgres:
+        image: postgres:17
+        restart: unless-stopped
+        container_name: '${POSTGRES_CONTAINER_NAME:?err}'
+        ports:
+            - '5432:5432'
+        environment:
+            POSTGRES_USER: '${POSTGRES_USER:?err}'
+            POSTGRES_PASSWORD: '${POSTGRES_PASSWORD:?err}'
+            POSTGRES_DB: '${POSTGRES_DB:?err}'
+        volumes:
+            - ./data/postgresql:/var/lib/postgresql/data
