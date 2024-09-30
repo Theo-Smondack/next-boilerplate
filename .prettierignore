@@ -1,0 +1,39 @@
+# Ignore artifacts:
+build
+coverage
+.next
+
+app/variables.css
+design/tokens.json
+.env*
+*.log
+*.log.*
+*.log-*
+*.log/*
+
+.vscode
+
+# Ignore node_modules:
+node_modules
+
+# Yarn
+yarn*
+
+# NPM
+.npmrc
+
+# Ignore .DS_Store:
+.DS_Store
+
+# Ignore .gitignore and .gitattributes:
+.gitignore
+.gitattributes
+.eslinteignore
+.prettierignore
+
+.eslintrc*
+.prettierrc*
+
+**.md
+
+**.mjml

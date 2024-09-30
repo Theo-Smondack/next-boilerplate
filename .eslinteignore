@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+reports
+public/templates
+
+*.json
+**/*.json
+.eslintrc.js
