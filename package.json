@@ -12,16 +12,25 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.5.3",
+    "@neondatabase/serverless": "^0.9.0",
+    "@prisma/adapter-neon": "^5.20.0",
     "@prisma/client": "5.20.0",
+    "bcryptjs": "^2.4.3",
     "next": "14.2.13",
+    "next-auth": "^5.0.0-beta.22",
     "prisma": "^5.20.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hook-form": "^7.53.0",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/ws": "^8.5.12",
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
     "eslint": "^8",

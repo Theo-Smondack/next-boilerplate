@@ -1,35 +1,52 @@
+import { Prisma } from '@prisma/client';
+import { hash } from 'bcryptjs';
+
 import prisma from './prisma';
 
+const todos: Prisma.TodoCreateInput[] = [
+    {
+        text: 'Read a book',
+        completed: false,
+    },
+    {
+        text: 'Buy groceries',
+        completed: true,
+    },
+    {
+        text: 'Go for a walk',
+        completed: false,
+    },
+    {
+        text: 'Clean the house',
+        completed: false,
+    },
+];
+
 async function main() {
+    const password = await hash('password', 10);
+
+    const user: Prisma.UserCreateInput = {
+        email: 'root@mail.com',
+        password,
+        emailVerified: new Date(),
+    };
+
     //Clear the database
     await prisma.todo.deleteMany();
     console.log('Database cleared');
 
     //Seed the database
     console.log('Seeding database...');
-    await prisma.todo.create({
-        data: {
-            text: 'Read a book',
-            completed: false,
-        },
-    });
-    await prisma.todo.create({
-        data: {
-            text: 'Buy groceries',
-            completed: true,
-        },
-    });
-    await prisma.todo.create({
-        data: {
-            text: 'Go for a walk',
-            completed: false,
-        },
-    });
-    await prisma.todo.create({
-        data: {
-            text: 'Clean the house',
-            completed: false,
-        },
+    for (const todo of todos) {
+        await prisma.todo.create({
+            data: todo,
+        });
+    }
+
+    await prisma.user.upsert({
+        where: { email: user.email as string },
+        update: user,
+        create: user,
     });
     console.log('Database seeded');
 }
