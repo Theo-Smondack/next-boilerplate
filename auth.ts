@@ -1,9 +1,17 @@
 import Credentials from '@auth/core/providers/credentials';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { compare } from 'bcryptjs';
-import NextAuth from 'next-auth';
+import NextAuth, { CredentialsSignin } from 'next-auth';
 
 import prisma from '@/prisma/prisma';
+
+class InvalidLoginError extends CredentialsSignin {
+    constructor(code: string) {
+        super();
+        this.code = code;
+        this.message = code;
+    }
+}
 
 async function getUserFromDb(email: string) {
     return prisma.user.findUnique({
@@ -21,17 +29,17 @@ const credentials = Credentials({
     async authorize(credentials) {
         // Type guard
         if (typeof credentials.email !== 'string' || typeof credentials.password !== 'string') {
-            throw new Error('Invalid credentials');
+            throw new InvalidLoginError('Invalid credentials');
         }
         // Fetch user from db
         const user = await getUserFromDb(credentials.email);
         if (!user) {
-            throw new Error('User not found.');
+            throw new InvalidLoginError('User not found.');
         }
         // Check password
         const isPasswordValid = await compare(credentials.password, user.password);
         if (!isPasswordValid) {
-            throw new Error('Invalid password');
+            throw new InvalidLoginError('Invalid password');
         }
         // Return user
         return user;
