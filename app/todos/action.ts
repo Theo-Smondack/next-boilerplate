@@ -1,12 +1,22 @@
 'use server';
 import { revalidatePath } from 'next/cache';
 
+import { auth } from '@/auth';
 import prisma from '@/prisma/prisma';
 
 export async function addTodo(text: string) {
+    const session = await auth();
+    if (!session?.user?.email) {
+        throw new Error('Unauthorized');
+    }
+
+    const { email } = session.user;
     await prisma.todo.create({
         data: {
             text,
+            user: {
+                connect: { email },
+            },
         },
     });
     revalidatePath('/todos');

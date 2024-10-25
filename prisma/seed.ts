@@ -1,9 +1,45 @@
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 
 // Init new prisma client
 const prismaSeedClient = new PrismaClient({
-    datasourceUrl: process.env.DATABASE_SEED_URL,
+    datasourceUrl: process.env.DATABASE_URL,
 });
+
+const defaultUser: Prisma.UserCreateInput = {
+    email: 'root@mail.com',
+    password: '$2y$10$j3FXQQi5PG5ikg8WDvZ7zeJmU4dITSOqmsRHajElfWcci/moNuJ.q', // == root
+};
+
+const todos: Prisma.TodoCreateInput[] = [
+    {
+        text: 'Read a book',
+        completed: false,
+        user: {
+            connect: { email: defaultUser.email },
+        },
+    },
+    {
+        text: 'Buy groceries',
+        completed: true,
+        user: {
+            connect: { email: defaultUser.email },
+        },
+    },
+    {
+        text: 'Go for a walk',
+        completed: false,
+        user: {
+            connect: { email: defaultUser.email },
+        },
+    },
+    {
+        text: 'Clean the house',
+        completed: false,
+        user: {
+            connect: { email: defaultUser.email },
+        },
+    },
+];
 
 async function main() {
     //Clear the database
@@ -12,30 +48,19 @@ async function main() {
 
     //Seed the database
     console.log('Seeding database...');
-    await prismaSeedClient.todo.create({
-        data: {
-            text: 'Read a book',
-            completed: false,
+    await prismaSeedClient.user.upsert({
+        where: { email: defaultUser.email },
+        update: {
+            password: defaultUser.password,
         },
+        create: defaultUser,
     });
-    await prismaSeedClient.todo.create({
-        data: {
-            text: 'Buy groceries',
-            completed: true,
-        },
-    });
-    await prismaSeedClient.todo.create({
-        data: {
-            text: 'Go for a walk',
-            completed: false,
-        },
-    });
-    await prismaSeedClient.todo.create({
-        data: {
-            text: 'Clean the house',
-            completed: false,
-        },
-    });
+
+    for (const todo of todos) {
+        await prismaSeedClient.todo.create({
+            data: todo,
+        });
+    }
     console.log('Database seeded');
 }
 main()
