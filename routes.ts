@@ -10,3 +10,9 @@ export const authRoutes = ['/login'];
  * @type {string}
  */
 export const DEFAULT_LOGIN_REDIRECT = '/';
+
+/**
+ * The default logout redirect URL
+ * @type {string}
+ */
+export const DEFAULT_LOGOUT_REDIRECT = '/login';

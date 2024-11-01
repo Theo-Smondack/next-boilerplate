@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import { FC, useState } from 'react';
 
-import { addTodo, deleteTodo, updateTodo } from '@/app/todos/action';
-import { TodosLoaderRsp } from '@/app/todos/loader';
+import { addTodo, deleteTodo, updateTodo } from '@/app/(front)/todos/action';
+import { TodosLoaderRsp } from '@/app/(front)/todos/loader';
 
 interface TodoClientProps {
     todos: TodosLoaderRsp;
@@ -18,7 +18,7 @@ const TodoClient: FC<TodoClientProps> = ({ todos }) => {
     };
 
     return (
-        <div className="mx-auto flex min-h-screen w-full flex-col">
+        <div className="mx-auto flex w-full flex-col">
             <Link href="/">
                 {/*Put it on top left*/}
                 <p className="ml-8 mt-8 cursor-pointer self-start justify-self-start text-blue-600 underline">
