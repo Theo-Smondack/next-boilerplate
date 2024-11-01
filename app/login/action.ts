@@ -6,7 +6,11 @@ import { AuthError } from 'next-auth';
 import { signIn } from '@/auth';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 
-export async function login(formData: FormData) {
+type ActionResult = {
+    error?: string;
+};
+
+export async function login(formData: FormData): Promise<ActionResult> {
     try {
         await signIn('credentials', {
             email: formData.get('email') as string,

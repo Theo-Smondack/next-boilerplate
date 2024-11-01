@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { Toaster } from '@/components/ui/toaster';
 import { LayoutProps } from '@/types';
 
 import type { Metadata } from 'next';
@@ -12,7 +13,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps) {
     return (
         <html lang="en">
-            <body>{children}</body>
+            <body>
+                <main>{children}</main>
+                <Toaster />
+            </body>
         </html>
     );
 }

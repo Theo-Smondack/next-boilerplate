@@ -13,9 +13,11 @@ import {
     FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useToast } from '@/hooks/use-toast';
 import { loginSchema } from '@/schema/login';
 
 const LoginForm = () => {
+    const { toast } = useToast();
     const form = useForm<z.infer<typeof loginSchema>>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
@@ -29,7 +31,16 @@ const LoginForm = () => {
         formData.append('email', values.email);
         formData.append('password', values.password);
         const res = await login(formData);
-        console.log(res);
+        if (res?.error) {
+            toast({
+                title: res.error,
+                variant: 'destructive',
+            });
+        } else {
+            toast({
+                title: 'Logged in successfully',
+            });
+        }
     };
 
     return (
