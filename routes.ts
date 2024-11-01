@@ -3,11 +3,7 @@
  * These routes require authentication
  * @type {string[]}
  */
-export const authRoutes = [
-    '/api/auth/signin',
-    '/api/auth/signout',
-    '/api/auth/callback/credentials',
-];
+export const authRoutes = ['/login'];
 
 /**
  * The default login redirect URL

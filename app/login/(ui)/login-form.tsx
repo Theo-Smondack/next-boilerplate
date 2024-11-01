@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { login } from '@/app/login/action';
 import { Button } from '@/components/ui/button';
 import {
     Form,
@@ -23,8 +24,12 @@ const LoginForm = () => {
         },
     });
 
-    const onSubmit = (values: z.infer<typeof loginSchema>) => {
-        console.log(values);
+    const onSubmit = async (values: z.infer<typeof loginSchema>) => {
+        const formData = new FormData();
+        formData.append('email', values.email);
+        formData.append('password', values.password);
+        const res = await login(formData);
+        console.log(res);
     };
 
     return (
