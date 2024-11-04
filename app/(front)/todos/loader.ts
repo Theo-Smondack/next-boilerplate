@@ -1,7 +1,9 @@
 import { Prisma } from '@prisma/client';
+import { redirect } from 'next/navigation';
 
 import { auth } from '@/auth';
 import prisma from '@/prisma/prisma';
+import { DEFAULT_LOGOUT_REDIRECT } from '@/routes';
 
 export const todosPrisma = Prisma.validator<Prisma.TodoDefaultArgs>()({
     select: {
@@ -16,7 +18,7 @@ export type TodosLoaderRsp = Prisma.TodoGetPayload<typeof todosPrisma>[];
 export async function loader(): Promise<TodosLoaderRsp> {
     const session = await auth();
     if (!session?.user?.email) {
-        throw new Error('Unauthorized');
+        redirect(DEFAULT_LOGOUT_REDIRECT);
     }
 
     const { email } = session.user;
