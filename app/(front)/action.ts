@@ -1,7 +1,7 @@
 'use server';
 
 import { signOut } from '@/auth';
-import { DEFAULT_LOGOUT_REDIRECT } from '@/routes';
+import { DEFAULT_LOGOUT_REDIRECT } from '@/config/routes';
 
 export async function logout() {
     await signOut({

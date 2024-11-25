@@ -6,6 +6,12 @@
 export const authRoutes = ['/login'];
 
 /**
+ * The default API routes
+ * @type {string}
+ */
+export const DEFAULT_API_ROUTES = '/api';
+
+/**
  * The default login redirect URL
  * @type {string}
  */

@@ -3,8 +3,8 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import { auth } from '@/auth';
+import { DEFAULT_LOGOUT_REDIRECT } from '@/config/routes';
 import prisma from '@/prisma/prisma';
-import { DEFAULT_LOGOUT_REDIRECT } from '@/routes';
 
 export async function addTodo(text: string) {
     const session = await auth();

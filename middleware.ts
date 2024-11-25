@@ -1,12 +1,13 @@
 import { auth } from '@/auth';
-import { authRoutes, DEFAULT_LOGIN_REDIRECT } from '@/routes';
+import { authRoutes, DEFAULT_API_ROUTES, DEFAULT_LOGIN_REDIRECT } from '@/config/routes';
 
 //region Handle auth middleware (redirects, etc)
 export default auth((req) => {
     const { nextUrl, auth } = req;
     const isLogged = !!auth;
     const isAuthRoute = authRoutes.includes(nextUrl.pathname);
-    const isPublicRoute = !isAuthRoute;
+    const isApiRoute = nextUrl.pathname.startsWith(DEFAULT_API_ROUTES);
+    const isPublicRoute = !isAuthRoute && !isApiRoute;
 
     // If the route is an auth route and the user is already logged in, redirect to the default login redirect URL
     if (isAuthRoute && isLogged) {

@@ -2,8 +2,8 @@ import { Prisma } from '@prisma/client';
 import { redirect } from 'next/navigation';
 
 import { auth } from '@/auth';
+import { DEFAULT_LOGOUT_REDIRECT } from '@/config/routes';
 import prisma from '@/prisma/prisma';
-import { DEFAULT_LOGOUT_REDIRECT } from '@/routes';
 
 export const todosPrisma = Prisma.validator<Prisma.TodoDefaultArgs>()({
     select: {
