@@ -211,6 +211,13 @@
   resolved "https://registry.yarnpkg.com/@microsoft/tsdoc/-/tsdoc-0.15.0.tgz#f29a55df17cb6e87cfbabce33ff6a14a9f85076d"
   integrity sha512-HZpPoABogPvjeJOdzCOSJsXeL/SMCBgBZMVC3X3d7YYp2gf31MfxhUoYUNwf1ERPJOnQc0wkFn9trqI6ZEdZuA==
 
+"@mynaui/icons-react@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@mynaui/icons-react/-/icons-react-0.3.3.tgz#99ed726376a53a9ce667832245773d16424bac35"
+  integrity sha512-vUA7T9xlPrFrXnApTb5Jdm9rbFKpENAL4cgXEmY+CpWOth+y4vdmw2gp3xGJ4Fhjpw+N4WH+yErHIoNzUD9HhA==
+  dependencies:
+    prop-types "^15.8.1"
+
 "@next/env@14.2.13":
   version "14.2.13"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-14.2.13.tgz#ba341ba9eb70db428fc1c754f49c3c516f7bab47"
@@ -2617,6 +2624,11 @@ next-auth@^5.0.0-beta.25:
   integrity sha512-2dJJw1sHQl2qxCrRk+KTQbeH+izFbGFPuJj5eGgBZFYyiYYtvlrBeUw1E/OJJxTRjuxbSYGnCTkUIRsIIW0bog==
   dependencies:
     "@auth/core" "0.37.2"
+
+next-themes@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/next-themes/-/next-themes-0.4.4.tgz#ce6f68a4af543821bbc4755b59c0d3ced55c2d13"
+  integrity sha512-LDQ2qIOJF0VnuVrrMSMLrWGjRMkq+0mpgl6e0juCLqdJ+oo8Q84JRWT6Wh11VDQKkMMe+dVzDKLWs5n87T+PkQ==
 
 next@14.2.13:
   version "14.2.13"
