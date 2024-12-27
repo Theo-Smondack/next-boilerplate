@@ -42,9 +42,11 @@ const todos: Prisma.TodoCreateInput[] = [
 ];
 
 async function main() {
-    //Clear the database
-    await prismaSeedClient.todo.deleteMany();
-    console.log('Database cleared');
+    const existingTodos = await prismaSeedClient.todo.findMany();
+    if (existingTodos.length > 0) {
+        await prismaSeedClient.todo.deleteMany();
+        console.log('Database cleared');
+    }
 
     //Seed the database
     console.log('Seeding database...');
