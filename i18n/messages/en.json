@@ -1,0 +1,47 @@
+{
+  "navbar": {
+    "logout": "Log out"
+  },
+  "login": {
+    "title": "Login",
+    "email": {
+      "label": "Email address",
+      "placeholder": "Enter your email address..."
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password..."
+    },
+    "button": "Login",
+    "message": {
+      "success": "Logged in successfully",
+      "error": {
+        "user-not-found": "User not found",
+        "invalid-password": "Invalid password",
+        "invalid-email-address": "Invalid email address",
+        "email-required": "Email address is required",
+        "password-required": "Password is required"
+      }
+    }
+  },
+  "home": {
+    "title": "Welcome to your new app!",
+    "subtitle": "Get started by editing",
+    "link-text": "Go to the Todos page"
+  },
+  "todos": {
+    "title": "Todo List",
+    "link": {
+      "go-back": "Go back"
+    },
+    "input": {
+      "add-todo": {
+        "placeholder": "Add a new todo..."
+      }
+    },
+    "button": {
+      "add": "Add",
+      "delete": "Delete"
+    }
+  }
+}

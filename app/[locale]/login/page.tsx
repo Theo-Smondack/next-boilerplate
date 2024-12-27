@@ -1,6 +1,6 @@
 'use client';
 
-import LoginCard from '@/app/login/(ui)/login-card';
+import LoginCard from '@/app/[locale]/login/(ui)/login-card';
 
 const LoginPage = () => {
     return <LoginCard/>;

@@ -1,0 +1,47 @@
+{
+  "navbar": {
+    "logout": "Déconnexion"
+  },
+  "login": {
+    "title": "Connexion",
+    "email": {
+      "label": "Adresse email",
+      "placeholder": "Entrez votre adresse email..."
+    },
+    "password": {
+      "label": "Mot de passe",
+      "placeholder": "Entrez votre mot de passe..."
+    },
+    "button": "Se connecter",
+    "message": {
+      "success": "Connecté avec succès",
+      "error": {
+        "user-not-found": "Utilisateur non trouvé",
+        "invalid-password": "Mot de passe invalide",
+        "invalid-email-address": "Adresse email invalide",
+        "email-required": "Adresse email est requise",
+        "password-required": "Mot de passe est requis"
+      }
+    }
+  },
+  "home": {
+    "title": "Bienvenue sur votre nouvelle application!",
+    "subtitle": "Commencez par modifier",
+    "link-text": "Aller à la page Todos"
+  },
+  "todos": {
+    "title": "Liste de tâches",
+    "link": {
+      "go-back": "Retour"
+    },
+    "input": {
+      "add-todo": {
+        "placeholder": "Ajouter une nouvelle tâche..."
+      }
+    },
+    "button": {
+      "add": "Ajouter",
+      "delete": "Supprimer"
+    }
+  }
+}

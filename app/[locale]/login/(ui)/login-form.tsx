@@ -1,8 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { login } from '@/app/login/action';
+import { login } from '@/app/[locale]/login/action';
 import { Button } from '@/components/ui/button';
 import {
     Form,
@@ -14,9 +15,12 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { loginSchema } from '@/schema/login';
+import { getLoginSchema } from '@/schema/login';
 
 const LoginForm = () => {
+    const t = useTranslations('login');
+    const tLoginError = useTranslations('login.message.error');
+    const loginSchema = getLoginSchema(tLoginError);
     const { toast } = useToast();
     const form = useForm<z.infer<typeof loginSchema>>({
         resolver: zodResolver(loginSchema),
@@ -38,7 +42,7 @@ const LoginForm = () => {
             });
         } else {
             toast({
-                title: 'Logged in successfully',
+                title: t('message.success'),
             });
         }
     };
@@ -51,9 +55,9 @@ const LoginForm = () => {
                     control={form.control}
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Email</FormLabel>
+                            <FormLabel>{t('email.label')}</FormLabel>
                             <FormControl>
-                                <Input placeholder="Enter your email..." {...field} />
+                                <Input placeholder={t('email.placeholder')} {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -64,11 +68,11 @@ const LoginForm = () => {
                     control={form.control}
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Password</FormLabel>
+                            <FormLabel>{t('password.label')}</FormLabel>
                             <FormControl>
                                 <Input
                                     type="password"
-                                    placeholder="Enter your password..."
+                                    placeholder={t('password.placeholder')}
                                     {...field}
                                 />
                             </FormControl>
@@ -76,7 +80,7 @@ const LoginForm = () => {
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Login</Button>
+                <Button type="submit">{t('button')}</Button>
             </form>
         </Form>
     );

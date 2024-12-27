@@ -1,9 +1,11 @@
 import { z } from 'zod';
 
-export const loginSchema = z.object({
-    email: z
-        .string()
-        .email({ message: 'Invalid email address' })
-        .min(1, { message: 'Email is required' }),
-    password: z.string().min(1, { message: 'Password is required' }),
-});
+export function getLoginSchema(t: (key: string) => string){
+    return z.object({
+        email: z
+            .string()
+            .email({ message: t('invalid-email-address') })
+            .min(1, { message: t('email-required') }),
+        password: z.string().min(1, { message: t('password-required') }),
+    });
+}

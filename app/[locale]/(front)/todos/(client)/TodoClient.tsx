@@ -1,15 +1,17 @@
 'use client';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { FC, useState } from 'react';
 
-import { addTodo, deleteTodo, updateTodo } from '@/app/(front)/todos/action';
-import { TodosLoaderRsp } from '@/app/(front)/todos/loader';
+import { addTodo, deleteTodo, updateTodo } from '@/app/[locale]/(front)/todos/action';
+import { TodosLoaderRsp } from '@/app/[locale]/(front)/todos/loader';
 
 interface TodoClientProps {
     todos: TodosLoaderRsp;
 }
 
 const TodoClient: FC<TodoClientProps> = ({ todos }) => {
+    const t = useTranslations('todos');
     const [todoInput, setTodoInput] = useState<string>('');
 
     const onClickAdd = async () => {
@@ -22,16 +24,16 @@ const TodoClient: FC<TodoClientProps> = ({ todos }) => {
             <Link href="/">
                 {/*Put it on top left*/}
                 <p className="ml-8 mt-8 cursor-pointer self-start justify-self-start text-blue-600 underline">
-                    Go back
+                    {t('link.go-back')}
                 </p>
             </Link>
             <div className="mx-auto w-1/3 justify-self-center">
-                <h1 className="mb-6 text-center text-3xl font-bold">Todo List</h1>
+                <h1 className="mb-6 text-center text-3xl font-bold">{t('title')}</h1>
                 <div className="mb-4 flex">
                     <input
                         type="text"
                         className="flex-grow rounded-l-md border px-3 py-2 text-black focus:outline-none"
-                        placeholder="Add a new todo"
+                        placeholder={t('input.add-todo.placeholder')}
                         value={todoInput}
                         onChange={(e) => setTodoInput(e.target.value)}
                     />
@@ -39,7 +41,7 @@ const TodoClient: FC<TodoClientProps> = ({ todos }) => {
                         onClick={onClickAdd}
                         className="rounded-r-md bg-blue-500 px-6 py-2 text-white hover:bg-blue-600 focus:outline-none"
                     >
-                        Add
+                        {t('button.add')}
                     </button>
                 </div>
 
@@ -59,7 +61,7 @@ const TodoClient: FC<TodoClientProps> = ({ todos }) => {
                                 onClick={async () => await deleteTodo(todo.id)}
                                 className="rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600 focus:outline-none"
                             >
-                                Delete
+                                {t('button.delete')}
                             </button>
                         </li>
                     ))}
